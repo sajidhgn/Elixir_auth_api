@@ -1,0 +1,311 @@
+{
+  "swagger": "2.0",
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "scheme": "bearer",
+      "name": "Authorization",
+      "in": "header",
+      "description": "API Token must be provided via `Authorization: Bearer ` header"
+    }
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/services_infos": {
+      "post": {
+        "tags": [
+          "Services_Info"
+        ],
+        "summary": "Services info creation",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/CreateServicesInfo"
+            },
+            "required": true,
+            "name": "body",
+            "in": "body",
+            "description": "Services info Params"
+          }
+        ],
+        "operationId": "ExauthWeb.Services_InfoController.create",
+        "description": "Services info creation"
+      }
+    },
+    "/api/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Register",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/SignUp"
+            },
+            "required": true,
+            "name": "body",
+            "in": "body",
+            "description": "Signup Params"
+          }
+        ],
+        "operationId": "ExauthWeb.AuthController.register",
+        "description": "Signup User"
+      }
+    },
+    "/api/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/SignIn"
+            },
+            "required": true,
+            "name": "body",
+            "in": "body",
+            "description": "Login Params"
+          }
+        ],
+        "operationId": "ExauthWeb.AuthController.login",
+        "description": "Login with email and password"
+      }
+    },
+    "/api/about/list": {
+      "get": {
+        "tags": [
+          "About"
+        ],
+        "summary": "Get total about content",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/TotalAbouts"
+            },
+            "description": "Ok"
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "operationId": "ExauthWeb.AboutController.list",
+        "description": "Get total about content"
+      }
+    },
+    "/api/about/create": {
+      "post": {
+        "tags": [
+          "About"
+        ],
+        "summary": "About info creation",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/CreateAbout"
+            },
+            "required": true,
+            "name": "body",
+            "in": "body",
+            "description": "About info Params"
+          }
+        ],
+        "operationId": "ExauthWeb.AboutController.create",
+        "description": "About info creation"
+      }
+    }
+  },
+  "info": {
+    "version": "1.0",
+    "title": "Sajidhgn Web API",
+    "termsOfService": "Open for public",
+    "description": "API Documentation for MyAPI v1",
+    "contact": {
+      "name": "Sajidhgn",
+      "email": "sajidhgn@gmail.com"
+    }
+  },
+  "definitions": {
+    "TotalAbouts": {
+      "type": "object",
+      "title": "Abouts Us",
+      "example": {},
+      "description": "About me details"
+    },
+    "SignUp": {
+      "type": "object",
+      "title": "Sign Up User Schema",
+      "required": [
+        "password",
+        "email",
+        "username"
+      ],
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "username"
+        },
+        "password": {
+          "type": "string",
+          "description": "password"
+        },
+        "email": {
+          "type": "string",
+          "description": "email"
+        }
+      },
+      "example": {
+        "username": "sajidhgns",
+        "password": "1122334455",
+        "email": "sajidhgns23@gmail.com"
+      },
+      "description": "User Sign Up Schema"
+    },
+    "SignIn": {
+      "type": "object",
+      "title": "Sign in User Schema",
+      "required": [
+        "password",
+        "username"
+      ],
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "username"
+        },
+        "password": {
+          "type": "string",
+          "description": "password"
+        }
+      },
+      "example": {
+        "username": "sajidhgns",
+        "password": "1122334455"
+      },
+      "description": "User Sign In Schema"
+    },
+    "CreateServicesInfo": {
+      "type": "object",
+      "title": "Services info Schema",
+      "required": [
+        "info"
+      ],
+      "properties": {
+        "info": {
+          "type": "string",
+          "description": "info"
+        }
+      },
+      "example": {
+        "info": "Title"
+      },
+      "description": "Services info Schema"
+    },
+    "CreateAbout": {
+      "type": "object",
+      "title": "About me Schema",
+      "required": [
+        "profile",
+        "portfolio_link",
+        "hire_link",
+        "about_detail",
+        "designation",
+        "name"
+      ],
+      "properties": {
+        "profile": {
+          "type": "string",
+          "description": "profile"
+        },
+        "portfolio_link": {
+          "type": "string",
+          "description": "portfolio_link"
+        },
+        "name": {
+          "type": "string",
+          "description": "name"
+        },
+        "hire_link": {
+          "type": "string",
+          "description": "hire_link"
+        },
+        "designation": {
+          "type": "string",
+          "description": "designation"
+        },
+        "about_detail": {
+          "type": "string",
+          "description": "about_detail"
+        }
+      },
+      "example": {
+        "profile": "profile link",
+        "portfolio_link": "http://sajidhgn.com",
+        "name": "sajid",
+        "hire_link": "http://sajidhgn.com",
+        "designation": "developer",
+        "about_detail": "full stack developer"
+      },
+      "description": "About me Schema"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ]
+}
